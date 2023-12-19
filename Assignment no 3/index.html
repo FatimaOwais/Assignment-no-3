@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment</title>
+</head>
+<body><br><br>
+<center><h1>Assignment 03</h1>
+</center>
+  <center><div class="search-container">
+    <select id="searchBy">
+      <option value="brand">Brand</option>
+      <option value="model">Model</option>
+      <option value="price">Price</option>
+      <option value="camera">Camera</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="Enter search value">
+    <button onclick="searchMobiles()">Search</button>
+  </div>
+  
+  <div id="results"></div></center>
+  <style>
+    body{
+      background-color: blueviolet;
+      color: white;
+    }
+  </style>
+
+<script>
+let arr = [
+{
+        brand: "Samsung",
+        model: "SamsungA30",
+        price: "40000",
+        camera: "40px",
+        ram: "8gb",
+        rom : "128gb",
+        
+    },
+    {
+        brand: "Samsung",
+        model: "SamsungA10",
+        price: "40000",
+        camera: "40px",
+        ram: "4gb",
+        rom : "128gb",
+        
+    },
+    {
+        brand: "Samsung",
+        model: "SamsungA20",
+        price: "40000",
+        camera: "40px",
+        ram: "4gb",
+        rom : "128gb",
+        
+    },
+    {
+        brand: "Vivo",
+        model: "VivoY20",
+        price: "20000",
+        camera: "40px",
+        ram: "2gb",
+        rom : "32gb",
+        
+    },
+    {
+        brand: "Vivo",
+        model: "VivoY11",
+        price: "20000",
+        camera: "40px",
+        ram: "3gb",
+        rom : "32gb",
+        
+    },
+    {
+        brand: "Vivo",
+        model: "VivoY15",
+        price: "30000",
+        camera: "40px",
+        ram: "4gb",
+        rom : "64gb",
+        
+    },
+    {
+        brand: "Motorola",
+        model: "Motorola123",
+        price: "5000",
+        camera: "2px",
+        ram: "2gb",
+        rom : "32gb",
+        
+    },
+    {
+        brand: "Iphone",
+        model: "Iphone12",
+        price: "300000",
+        camera: "40px",
+        ram: "8gb",
+        rom : "128gb",
+        
+    },
+    {
+        brand: "Iphone",
+        model: "Iphone13",
+        price: "300000",
+        camera: "40px",
+        ram: "8gb",
+        rom : "128gb",
+        
+    },
+    {
+        brand: "Iphone",
+        model: "IphoneX",
+        price: "300000",
+        camera: "40px",
+        ram: "8gb",
+        rom : "128gb",
+        
+    },
+];
+function searchMobiles() {
+  const searchBy = document.getElementById('searchBy').value;
+  const searchValue = document.getElementById('searchInput').value.toLowerCase();
+
+  const filteredMobiles = arr.filter(mobile => {
+    const value = mobile[searchBy].toLowerCase();
+    return value.includes(searchValue);
+  });
+
+  displayResults(filteredMobiles);
+}
+
+function displayResults(results) {
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = '';
+
+  if (results.length === 0) {
+    resultsContainer.innerHTML = '<p>No matching mobile phones found.</p>';
+    return;
+  }
+
+  const resultList = document.createElement('ul');
+  results.map(mobile => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${mobile.brand} - ${mobile.model}`;
+    resultList.appendChild(listItem);
+  });
+
+  resultsContainer.appendChild(resultList);
+}
+
+</script>
+</body>
+</html>
